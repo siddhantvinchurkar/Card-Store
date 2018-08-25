@@ -1,1 +1,165 @@
+<!-- Card Store -->
 <!DOCTYPE html>
+
+<html lang="en">
+
+	<head>
+		<!-- Essential tags -->
+		<title>Card Store</title>
+		<meta charset="utf-8" /> <!-- Set charset for document -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" /> <!-- Tell browser that this page is responsive -->
+		<link rel="shortcut icon" type="image/png" href="image-resources/icons/16.png"> <!-- Set the shortcut icon -->
+		<link rel="manifest" href="text-resources/manifest.json"> <!-- Tell the browser where to look for app metadata -->
+		<meta name="theme-color" content="#2196F3"> <!-- Set the theme color for the app -->
+		<meta name="Description" content="Card Store is a simple Progressive Web App (PWA) that securely stores all your cards in a virtual vault."> <!-- Describe the application for SEO purposes -->
+
+		<!-- External Stylesheets (Loaded Asynchronously) -->
+		<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css" media="none" onload="if(media!='screen,projection')media='screen,projection'">
+		<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="none" onload="if(media!='screen,projection')media='screen,projection'">
+		<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" media="none" onload="if(media!='all')media='all'">
+
+		<!-- Internal Stylesheet (Unfortunately, this part is loaded synchronously) -->
+		<style>
+			nav {
+				background-color: #2196F3;
+				padding-left: 10px;
+				padding-right: 10px;
+			}
+			body {
+				display: flex;
+				min-height: 100vh;
+				flex-direction: column;
+				font-family: 'Roboto', sans-serif;
+				background-color: #F9F9F9;
+			}
+			main {
+				flex: 1 0 auto;
+			}
+			.page-footer {
+				padding-top: 0px;
+				background-color: #2196F3;
+			}
+			.footer-copyright a {
+				color: #FFFFFF;
+			}
+			.fixed-action-btn {
+				margin-bottom: 2.5em;		
+			}
+			.btn {
+				background-color: #2196F3;
+			}
+			.btn {
+				background-color: #4DABF5;
+			}
+			.btn-large {
+				background-color: #2196F3;
+			}
+			.btn-large:hover {
+				background-color: #4DABF5;
+			}
+			.app-background-container {
+				display: flex;
+				justify-content: center;
+			}
+			.center {
+				width: 250px;
+				position: absolute;
+				margin: auto;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+			}
+			.center2 {
+				opacity:0.1;
+				position: absolute;
+				margin: auto;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+			}
+		</style>
+
+	</head>
+
+	<!-- Body -->
+	<body>
+
+		<!-- Header -->
+		<header>
+			<div class="navbar-fixed">
+				<nav>
+					<div class="nav-wrapper">
+						<span class="sidenav-trigger" data-target="side-nav"><i class="material-icons">credit_card</i></span>
+						<a class="brand-logo">Card Store</a>
+						<ul class="right hide-on-med-and-down">
+							<li><a class="modal-trigger" href="#signInModal" id="username"><b>Sign In</b></a></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</header>
+
+		<!-- Main -->
+		<main>
+			<!--Progrss Bar-->
+			<div class="app-background-container" id="progressBar" style="display:none;">
+				<img src="image-resources/icons/512.png" class="center2" />
+				<div class="progress center">
+					<div class="indeterminate" style="margin-right: auto; margin-left: auto; width: 250px;"></div>
+				</div>
+			</div>
+			<!--Contents-->
+			<div id="pageContents">
+				<img src="image-resources/icons/512.png" class="center2" />
+
+				<!-- Sign in modal -->
+				<div id="signInModal" class="modal">
+					<div class="modal-content">
+						<h4>Sign In</h4>
+						<div class="row">
+							<div class="input-field col s12">
+								<input id="phoneNumber" type="text" class="validate">
+								<label for="phoneNumber">Phone Number</label>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<a href="#!" id="signIn" class="waves-effect waves-green btn-flat">Send OTP</a>
+					</div>
+				</div>
+
+				<div class="row" style="margin-top:5em;">
+					<div class="col s12 m7 offset-m2">
+						<h1>Welcome to Card Store.</h1>
+						<h4>Let's get you started.</h4>
+						<br />
+						<a class="waves-effect waves-light btn-large modal-trigger" href="#signInModal"><i class="material-icons right">arrow_right_alt</i>Sign In</a>
+					</div>
+				</div>
+				<div class="fixed-action-btn">
+					<a class="btn-floating btn-large blue tooltipped" data-position="left" data-tooltip="Add new card" id="addNewCard" style="display:none;"><i class="large material-icons">add</i></a>
+				</div>
+			</div>
+		</main>
+
+		<!-- Footer -->
+		<footer class="page-footer">
+			<div class="footer-copyright">
+				<div class="container">
+					<a href="https://volatile.ga/" target="_blank" title="Volatile, Inc.">&copy;&emsp;<span id="copyrightYear">2018</span>&emsp;Volatile, Inc.&emsp;</a>
+					<a class="right" href="https://siddhantvinchurkar.me/" target="_blank" title="Siddhant Vinchurkar">Designed by Siddhant Vinchurkar</a>
+				</div>
+			</div>
+		</footer>
+
+	<!-- External Scripts (Loaded asynchronously and placed at end of body for optimized loading) -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js" async></script> <!-- Materialize JS -->
+	<script type="text/javascript" src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js" async></script> <!-- Firebase JS -->
+	<script type="text/javascript" src="https://www.gstatic.com/firebasejs/5.4.1/firebase-auth.js" async></script> <!-- Firebase Authentication JS -->
+	<script type="text/javascript" src="text-resources/index.js" async></script> <!-- Internal Logic Script -->
+
+	</body>
+
+</html>
