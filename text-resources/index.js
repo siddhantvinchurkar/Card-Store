@@ -17,6 +17,10 @@ window.onload = function(){
 
 	/* Essential Onload Events */
 
+	// Register Service Worker
+
+	if ("serviceWorker" in navigator){navigator.serviceWorker.register("text-resources/sw.js");}
+
 	// Set copyright text year
 	document.getElementById("copyrightYear").innerHTML = new Date().getFullYear();
 
