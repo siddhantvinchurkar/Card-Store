@@ -103,33 +103,15 @@
 
 		<!-- Main -->
 		<main>
-			<!--Progrss Bar-->
+			<!-- Progrss Bar -->
 			<div class="app-background-container" id="progressBar" style="display:none;">
 				<img src="image-resources/icons/512.png" class="center2" />
 				<div class="progress center">
 					<div class="indeterminate" style="margin-right: auto; margin-left: auto; width: 250px;"></div>
 				</div>
 			</div>
-			<!--Contents-->
-			<div id="pageContents">
-				<img src="image-resources/icons/512.png" class="center2" />
-
-				<!-- Sign in modal -->
-				<div id="signInModal" class="modal">
-					<div class="modal-content">
-						<h4>Sign In</h4>
-						<div class="row">
-							<div class="input-field col s12">
-								<input id="phoneNumber" type="text" class="validate">
-								<label for="phoneNumber">Phone Number</label>
-							</div>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<a href="#!" id="signIn" class="waves-effect waves-green btn-flat">Send OTP</a>
-					</div>
-				</div>
-
+			<!-- Landing Contents -->
+			<div id="landingContents">
 				<div class="row" style="margin-top:5em;">
 					<div class="col s12 m7 offset-m2">
 						<h1>Welcome to Card Store.</h1>
@@ -138,8 +120,86 @@
 						<a class="waves-effect waves-light btn-large modal-trigger" href="#signInModal"><i class="material-icons right">arrow_right_alt</i>Sign In</a>
 					</div>
 				</div>
+			</div>
+			<!-- Sign in modal -->
+			<div id="signInModal" class="modal">
+				<div class="modal-content">
+					<h4>Sign In</h4>
+					<div class="row" id="phoneOtpDiv">
+						<div class="input-field col s12">
+							<input id="phoneNumber" type="text" class="validate">
+							<label id="phno" for="phoneNumber">Phone Number</label>
+						</div>
+					</div>
+					<center id="spinner" style="display:none;">
+						<div class="preloader-wrapper small active">
+							<div class="spinner-layer spinner-blue">
+								<div class="circle-clipper left">
+									<div class="circle"></div>
+								</div>
+								<div class="gap-patch">
+									<div class="circle"></div>
+								</div>
+								<div class="circle-clipper right">
+									<div class="circle"></div>
+								</div>
+							</div>
+
+							<div class="spinner-layer spinner-red">
+								<div class="circle-clipper left">
+									<div class="circle"></div>
+								</div>
+								<div class="gap-patch">
+									<div class="circle"></div>
+								</div>
+								<div class="circle-clipper right">
+									<div class="circle"></div>
+								</div>
+							</div>
+
+							<div class="spinner-layer spinner-yellow">
+								<div class="circle-clipper left">
+									<div class="circle"></div>
+								</div>
+								<div class="gap-patch">
+									<div class="circle"></div>
+								</div>
+								<div class="circle-clipper right">
+									<div class="circle"></div>
+								</div>
+							</div>
+
+							<div class="spinner-layer spinner-green">
+								<div class="circle-clipper left">
+									<div class="circle"></div>
+								</div>
+								<div class="gap-patch">
+									<div class="circle"></div>
+								</div>
+								<div class="circle-clipper right">
+									<div class="circle"></div>
+								</div>
+							</div>
+						</div>
+					<center>
+				</div>
+				<div class="modal-footer">
+					<a href="#!" id="signIn" onclick="document.getElementById('rp').click();" class="waves-effect waves-green btn-flat">Send OTP</a>
+					<a href="#!" style="display:none;" id="rp" class="waves-effect waves-green btn-flat"></a>
+				</div>
+			</div>
+			<!-- Contents -->
+			<div id="pageContents" style="display:none;">
+				<img src="image-resources/icons/512.png" class="center2" />
 				<div class="fixed-action-btn">
-					<a class="btn-floating btn-large blue tooltipped" data-position="left" data-tooltip="Add new card" id="addNewCard" style="display:none;"><i class="large material-icons">add</i></a>
+					<a class="btn-floating btn-large blue tooltipped" data-position="left" data-tooltip="Add new card" id="addNewCard"><i class="large material-icons">add</i></a>
+				</div>
+				<div class="row" style="margin-top:5em;">
+					<div class="col s12 m7 offset-m2">
+						<h1>Welcome to Card Store.</h1>
+						<h4>Manage all your cards here.</h4>
+						<br />
+					</div>
 				</div>
 			</div>
 		</main>
