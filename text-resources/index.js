@@ -62,13 +62,14 @@ window.onload = function(){
 		}
 	});
 
-	// Send SMS for verification
+	// Send SMS for verification and then verify the OTP
 
 	document.getElementById("signIn").onclick= function(){
 
 		if(otpFlag){
 			otpFlag = false;
 			blockSignInModal();
+			document.getElementById("signIn").innerHTML = "Verifying OTP...";
 			confirmationResult.confirm(document.getElementById("phoneNumber").value).then(function (result) {
 				// User signed in successfully.
 					user = result.user;
@@ -82,6 +83,7 @@ window.onload = function(){
 
 		else{
 			blockSignInModal();
+			document.getElementById("signIn").innerHTML = "Sending OTP...";
 			firebase.auth().signInWithPhoneNumber(document.getElementById("phoneNumber").value, window.recaptchaVerifier).then(function(confirmationResult){
 				// SMS sent. Prompt user to type the code from the message, then sign the user in with confirmationResult.confirm(code).
 				window.confirmationResult = confirmationResult;
