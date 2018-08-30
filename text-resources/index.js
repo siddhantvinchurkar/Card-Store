@@ -7,6 +7,8 @@ var tooltipElements;
 var tooltipInstances;
 var modalElements;
 var modalInstances;
+var formSelectElements;
+var formSelectInstances;
 
 var otpFlag = false;
 
@@ -37,6 +39,10 @@ window.onload = function(){
 	// Initialize Modals
 	modalElements = document.querySelectorAll('.modal');
 	modalInstances = M.Modal.init(modalElements);
+
+	// Initialize Form Selects
+	formSelectElements = document.querySelectorAll('select');
+	formSelectInstances = M.FormSelect.init(formSelectElements);
 
 	/* Initialize Firebase */
 
