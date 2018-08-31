@@ -9,6 +9,10 @@ var modalElements;
 var modalInstances;
 var formSelectElements;
 var formSelectInstances;
+var sidenavElements;
+var sidenavInstances;
+var collapsibleElements;
+var collapsibleInstances;
 
 var otpFlag = false;
 var ctpFlag = false;
@@ -18,6 +22,7 @@ var homeFlag = false;
 var user;
 var selectedCountryCode;
 var countryPhoneCodes;
+var homeCountry = 'IN';
 
 /* Global Functions */
 
@@ -41,11 +46,20 @@ window.onload = function(){
 
 	if ("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js");}
 
+	// Set default country code
+	selectedCountryCode = 'IN';
+
 	// Get country data (block sign in modal while data loads)
 	blockSignInModal();
 	document.getElementById("signIn").innerHTML = "Please wait...";
-	httpGetAsync("text-resources/country-code-to-phone-code.json", ctp);
-	httpGetAsync("text-resources/country-code-to-country-name.json", ctn);
+	httpGetAsync("https://ipinfo.io/country/?token=5fd6e602500404", ipinfo);
+
+	// Get Home Country
+	function ipinfo(data){
+		homeCountry = data.toString();
+		httpGetAsync("text-resources/country-code-to-phone-code.json", ctp);
+		httpGetAsync("text-resources/country-code-to-country-name.json", ctn);
+	}
 
 	// Populate country list
 	function ctp(data){
@@ -111,6 +125,14 @@ window.onload = function(){
 	modalElements = document.querySelectorAll('.modal');
 	modalInstances = M.Modal.init(modalElements);
 
+	// Initialize Sidenavs
+	sidenavElements = document.querySelectorAll('.sidenav');
+	sidenavInstances = M.Sidenav.init(sidenavElements);
+
+	// Initialize Collapsible
+	collapsibleElements = document.querySelectorAll('.collapsible');
+	collapsibleInstances = M.Collapsible.init(collapsibleElements);
+
 	// Initialize form selects after the country list is populated
 	function initializeFormSelectElements(){
 		formSelectElements = document.querySelectorAll('select');
@@ -172,6 +194,7 @@ window.onload = function(){
 				document.getElementById("phoneNumber").value = "";
 				document.getElementById("phno").innerHTML = "OTP";
 				document.getElementById("phoneNumber").focus();
+				document.getElementById("countriesContainer").style.display = "none";
 				otpFlag = true;
 			}).catch(function(error){
 				// Error; SMS not sent
@@ -180,6 +203,16 @@ window.onload = function(){
 		}
 	}
 
+	// Sign user out
+	firebase.auth().signOut().then(function(){
+		// Sign-out successful
+		console.log("%cSuccessfully signed out!", "background-color:#222222; color:#BADA55;");
+		signedOut();
+		}).catch(function(error){
+		// Unable to sign out
+		console.log("%cError signing out. -->" + error, "background-color:#5555FF; color:#FF0000;");
+	});
+
 	// Callback after successful sign in
 
 	function signedIn(){
@@ -187,6 +220,7 @@ window.onload = function(){
 		document.getElementById("username").innerHTML = "<b>Sign Out</b>";
 		document.getElementById("username").classList.remove("modal-trigger");
 		document.getElementById("username").href = "";
+		document.getElementById("logo").style.display="block";
 		document.getElementById("landingContents").style.display = "none";
 		document.getElementById("pageContents").style.display = "block";
 		console.log("%cSuccessfully signed in!", "background-color:#222222; color:#BADA55;");
@@ -198,6 +232,7 @@ window.onload = function(){
 		document.getElementById("username").innerHTML = "<b>Sign In</b>";
 		document.getElementById("username").classList.add("modal-trigger");
 		document.getElementById("username").href = "#signInModal";
+		document.getElementById("logo").style.display = "none";
 		document.getElementById("landingContents").style.display = "block";
 		document.getElementById("pageContents").style.display = "none";
 	}

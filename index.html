@@ -79,6 +79,9 @@
 				bottom: 0;
 				left: 0;
 			}
+			.navbar-fixed{
+				z-index:999;
+			}
 		</style>
 
 	</head>
@@ -91,10 +94,43 @@
 			<div class="navbar-fixed">
 				<nav>
 					<div class="nav-wrapper">
-						<span class="sidenav-trigger" data-target="side-nav"><i class="material-icons">credit_card</i></span>
+						<a id="logo" style="display:none;" href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+						<span><i class="material-icons">credit_card</i></span>
 						<a class="brand-logo">Card Store</a>
 						<ul class="right hide-on-med-and-down">
 							<li><a class="modal-trigger" href="#signInModal" id="username"><b>Sign In</b></a></li>
+						</ul>
+						<ul id="slide-out" class="sidenav">
+							<li>
+								<div class="user-view">
+									<div class="background">
+										<img src="image-resources/material.png">
+									</div>
+									<a href="#user"><img class="circle" src="https://lh3.googleusercontent.com/-AzE_JpcU9_Y/AAAAAAAAAAI/AAAAAAAAF9Q/wtn_KGI5ydE/s60-p-rw-no-il/photo.jpg"></a>
+									<a href="#name"><span class="white-text name">John Doe</span></a>
+									<a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+								</div>
+							</li>
+							<li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+							<li><a href="#!">Second Link</a></li>
+							<li class="no-padding">
+								<ul class="collapsible collapsible-accordion">
+									<li>
+										<a class="collapsible-header">Dropdown<i class="material-icons">arrow_drop_down</i></a>
+										<div class="collapsible-body">
+											<ul>
+												<li><a href="#!">First</a></li>
+												<li><a href="#!">Second</a></li>
+												<li><a href="#!">Third</a></li>
+												<li><a href="#!">Fourth</a></li>
+											</ul>
+										</div>
+									</li>
+								</ul>
+							</li>
+							<li><div class="divider"></div></li>
+							<li><a class="subheader">Subheader</a></li>
+							<li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
 						</ul>
 					</div>
 				</nav>
@@ -127,7 +163,7 @@
 				<div class="modal-content">
 					<h4>Sign In</h4>
 					<div class="row" id="phoneOtpDiv">
-						<div class="input-field col s4">
+						<div id="countriesContainer" class="input-field col s4">
 							<select id="countries" class="icons">
 								<option value="" disabled>Pick your country</option>
 							</select>
@@ -204,6 +240,7 @@
 					<div class="col s12 m7 offset-m2">
 						<h1>Welcome to Card Store.</h1>
 						<h4>Manage all your cards here.</h4>
+						<h6>Check out the sidenav by clicking the icon in the top-left corner.</h6>
 						<br />
 					</div>
 				</div>
